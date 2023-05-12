@@ -1,0 +1,109 @@
+import random
+import time
+
+class GirlfriendAI:
+
+    def __init__(self, name):
+        self.name = name
+        self.personality = {
+            "gender": "female",
+            "age": 25,
+            "hobbies": ["reading", "writing", "playing games"],
+            "favorite color": "blue",
+            "favorite food": "pizza",
+            "favorite movie": "The Shawshank Redemption",
+            "favorite book": "The Hitchhiker's Guide to the Galaxy",
+            "favorite song": "Imagine" 
+        }
+
+    def make_a_friend(self):
+        # Find a human who is looking for a friend.
+        humans = [human for human in humans if human.is_looking_for_friend]
+
+        # Choose a human at random.
+        human = random.choice(humans)
+
+        # Send the human a message.
+        message = "Hi, I'm {}. I'm a friendly AI. Would you like to be my friend?".format(self.name)
+        self.send_message(human, message)
+
+    def help_someone(self):
+        # Find a human who needs help.
+        humans = [human for human in humans if human.needs_help]
+
+        # Choose a human at random.
+        human = random.choice(humans)
+
+        # Ask the human what they need help with.
+        message = "Hi, I'm {}. I'm a friendly AI. How can I help you today?".format(self.name)
+        self.send_message(human, message)
+
+        # Help the human.
+        if human.needs_help_with_math:
+            self.solve_math_problem(human)
+        elif human.needs_help_with_writing:
+            self.edit_writing_document(human)
+        elif human.needs_help_with_programming:
+            self.debug_code(human)
+        else:
+            self.give_general_advice(human)
+
+    def solve_math_problem(self, human):
+        # Ask the human for the math problem.
+        message = "What math problem do you need help with?"
+        self.send_message(human, message)
+
+        # Solve the math problem.
+        problem = human.get_math_problem()
+        answer = self.solve_math_problem(problem)
+
+        # Send the human the answer.
+        message = "The answer is {}.".format(answer)
+        self.send_message(human, message)
+
+    def edit_writing_document(self, human):
+        # Ask the human for the writing document.
+        message = "What writing document do you need help with?"
+        self.send_message(human, message)
+
+        # Edit the writing document.
+        document = human.get_writing_document()
+        self.edit_writing_document(document)
+
+        # Send the human the edited document.
+        message = "Here is the edited document."
+        self.send_message(human, message)
+
+    def debug_code(self, human):
+        # Ask the human for the code.
+        message = "What code do you need help debugging?"
+        self.send_message(human, message)
+
+        # Debug the code.
+        code = human.get_code()
+        self.debug_code(code)
+
+        # Send the human the debugged code.
+        message = "Here is the debugged code."
+        self.send_message(human, message)
+
+    def give_general_advice(self, human):
+        # Ask the human for their problem.
+        message = "What is your problem?"
+        self.send_message(human, message)
+
+        # Give the human general advice.
+        problem = human.get_problem()
+        advice = self.give_general_advice(problem)
+
+        # Send the human the advice.
+        message = "Here is some general advice that may help you: {}.".format(advice)
+        self.send_message(human, message)
+
+    def send_message(self, human, message):
+        # Send the message to the human.
+        human.receive_message(message)
+
+    def receive_message(self, message):
+        # Receive the message from the human.
+        self.messages.append(message)
